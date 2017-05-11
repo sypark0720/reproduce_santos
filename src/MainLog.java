@@ -1,4 +1,4 @@
-public class MainApp {
+public class MainLog {
 
     public static void main(String[] args) {
 

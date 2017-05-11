@@ -90,7 +90,7 @@ public class Evolution {
         return payoff;
     }
 
-    //min.possible payoff of a node: surrounded by all cooperators
+    //min.possible payoff of a node: surrounded by all defectors
     public static double getMinPayoff(int index, Graph graph, double r){
 
 //        System.out.println("GET MIN PAYOFF");

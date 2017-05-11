@@ -3,7 +3,7 @@ import java.util.List;
 public class PGG {
 
     //모든 노드에 대해 payoff 계산
-    //all cooperators contribute the same cost c per game
+    //Fixed cost per game
     public static Graph round(Graph graph, double r){
 
         double[] newPayoff = graph.getPayoff().clone();
@@ -16,7 +16,7 @@ public class PGG {
         return graph;
     }
 
-    //all cooperators contribute the same cost c per game
+    //Fixed cost per individual
     public static Graph roundLimited(Graph graph, double r){
         double[] newPayoff = graph.getPayoff().clone();
 
