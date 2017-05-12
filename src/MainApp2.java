@@ -9,8 +9,7 @@ public class MainApp2
 
         GraphGenerator gg = new GraphGenerator();
 
-
-        for (int num=0; num<10; num++){
+        for (int num=0; num<1; num++){
 
             for (int i = 0; i < Param.nSample; i++) {
                 double r = Param.rStart + Param.rInterval * i;

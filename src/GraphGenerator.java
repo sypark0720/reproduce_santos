@@ -65,8 +65,8 @@ public class GraphGenerator {
             int newlySelected = 0; //현재 노드 중 새 노드가 연결될 노드
             int countSelect = 0;
 
-            //m0개의 새로운 edge를 만들 때까지 반복
-                while(countSelect<m0){
+            // m0/2개의 새로운 edge를 만들 때까지 반복
+                while(countSelect< m0/2){
 
                 float probe = rd.nextFloat(); //random한 소수 (0~1사이)를 하나 뽑는다
                 float partSum = 0;

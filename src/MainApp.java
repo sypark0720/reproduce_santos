@@ -1,84 +1,76 @@
-public class MainApp {
-
+public class MainApp
+{
     public static void main(String[] args) {
 
         double[] rArray = new double[Param.nSample];
-
         double[] homoResult = new double[Param.nSample];
         double[] heteroResult = new double[Param.nSample];
-        double[] heteroResultLimited = new double[Param.nSample];
-
-        double[] avgHomoResult = new double[Param.nSample];
-        double[] avgHeteroResult = new double[Param.nSample];
-        double[] avgHeteroResultLimited = new double[Param.nSample];
+        double[] heteroLimitedResult = new double[Param.nSample];
 
         GraphGenerator gg = new GraphGenerator();
 
-        for (int realization = 0; realization < Param.REALIZATION; realization++) {
+        for (int num=0; num<1; num++){
 
             //Homo
             Graph homoGraph = gg.generateHomoGraph(Param.m0, Param.nNodes);
-            homoGraph.initializeStrategy(Param.rc);
 
-            //Hetero: Fixed cost per game.
-            Graph heteroGraph = gg.generateHeteroGraph(Param.m0, Param.nNodes);
-            heteroGraph.initializeStrategy(Param.rc);
+            //한 그래프당 100번씩 돌린다
+            for (int runs=0; runs< Param.RUNS; runs++){
+                homoGraph.initializeStrategy(Param.rc);
 
-            for (int run = 0; run < Param.RUNFORREALIZATION; run++) {
-
+                //한 그래프당 한 번 돌릴 때 r을 변화시켜가며 돌린다
                 for (int i = 0; i < Param.nSample; i++) {
-                    double r = Param.rStart + Param.rInterval * i;
-                    rArray[i] = r;
 
-                    //homo
-                    for (int period = 0; period < Param.periods; period++) {
+                    double r = Param.rStart + Param.rInterval * i;
+
+                    //periods만큼 진화시킨다
+                    for (int j = 0; j < Param.periods; j++) {
                         homoGraph = PGG.round(homoGraph, r);
                         homoGraph = Evolution.evolve(homoGraph, r);
                         homoGraph.initializePayoff();
                     }
+
+                    rArray[i] = r;
                     homoResult[i] += Util.getFracOfCoop(homoGraph);
 
-                    //hetero
-                    for (int period = 0; period < Param.periods; period++) {
-                        heteroGraph = PGG.round(heteroGraph, r);
-                        heteroGraph = Evolution.evolve(heteroGraph, r);
-                        heteroGraph.initializePayoff();
-                    }
-                    heteroResult[i] += Util.getFracOfCoop(heteroGraph);
-
-                    //hetero-limited
-                    for (int period = 0; period < Param.periods; period++) {
-                        heteroGraph = PGG.roundLimited(heteroGraph, r);
-                        heteroGraph = Evolution.evolve(heteroGraph, r);
-                        heteroGraph.initializePayoff();
-                    }
-                    heteroResultLimited[i] += Util.getFracOfCoop(heteroGraph);
                 }
-            }
 
-            for (int i = 0; i < Param.nSample; i++) {
+                System.out.println("after 1 cycle: "+Util.arrayToString(homoResult));
 
 
-                avgHomoResult[i] += homoResult[i];
-                avgHeteroResult[i] += heteroResult[i];
-                avgHeteroResultLimited[i] += heteroResultLimited[i];
+//                //Hetero
+//                Graph heteroGraph = gg.generateHeteroGraph(Param.m0, Param.nNodes);
+//                heteroGraph.initializeStrategy(Param.rc);
 //
-//                avgHomoResult[i] += homoResult[i] / Param.RUNFORREALIZATION;
-//                avgHeteroResult[i] += heteroResult[i] / Param.RUNFORREALIZATION;
-//                avgHeteroResultLimited[i] += heteroResultLimited[i] / Param.RUNFORREALIZATION;
+//                for (int j = 0; j < Param.periods; j++) {
+//                    //1. HeteroGraph
+//                    heteroGraph = PGG.round(heteroGraph, r);
+//                    heteroGraph = Evolution.evolve(heteroGraph, r);
+//                    heteroGraph.initializePayoff();
+//                }
+//
+//                heteroResult[i] = Util.getFracOfCoop(heteroGraph);
+//
+//                for (int j = 0; j < Param.periods; j++) {
+//                    //1. HeteroGraph
+//                    heteroGraph = PGG.roundLimited(heteroGraph, r);
+//                    heteroGraph = Evolution.evolve(heteroGraph, r);
+//                    heteroGraph.initializePayoff();
+//                }
+//
+//                heteroLimitedResult[i] = Util.getFracOfCoop(heteroGraph);
             }
 
-            for (int i = 0; i < Param.nSample; i++) {
-                avgHomoResult[i] = avgHomoResult[i] / Param.REALIZATION;
-                avgHeteroResult[i] = avgHeteroResult[i] / Param.REALIZATION;
-                avgHeteroResultLimited[i] = avgHeteroResultLimited[i] / Param.REALIZATION;
-            }
+            System.out.println("after total runs: "+Util.arrayToString(homoResult));
 
-            System.out.println("r value: " + Util.arrayToString(rArray));
-            System.out.println("Homo---: " + Util.arrayToString(avgHomoResult));
-            System.out.println("Hetero : " + Util.arrayToString(avgHeteroResult));
-            System.out.println("Hetero2: " + Util.arrayToString(avgHeteroResultLimited));
+            //todo 평균 내기
+
+
+
+            System.out.println("r val  : "+Util.arrayToString(rArray));
+            System.out.println("homo   : "+Util.arrayToString(Util.averageArray(homoResult, Param.REALIZATION*Param.RUNS)));
+            System.out.println("hetero1: "+Util.arrayToString(heteroResult));
+            System.out.println("hetero2: "+Util.arrayToString(heteroLimitedResult));
         }
     }
 }
-

@@ -3,6 +3,13 @@ import java.util.List;
 
 public class Util {
 
+    public static double[] averageArray(double[] array, int num){
+        for(int i=0; i<array.length; i++){
+            array[i] = array[i]/num;
+        }
+        return array;
+    }
+
 
     public static List<List<Integer>> generateDoubleList(int nNodes){
         List<List<Integer>> doubleList = new ArrayList<>();

@@ -16,6 +16,16 @@ public class UtilTest {
     }
 
     @Test
+    public void averageArray() throws Exception {
+        double[] expected = {1,1,1,1,1};
+
+        double[] test = {5,5,5,5,5};
+        double[] actual = Util.averageArray(test, 5);
+
+        assertArrayEquals(expected, actual, 0.00000001);
+    }
+
+    @Test
     public void getNeighbors() throws Exception {
 
         Graph homo = gg.generateHomoGraph(4, 10);
@@ -49,4 +59,6 @@ public class UtilTest {
         assertEquals(7, Util.maxMinDiff(8, payoff), 0.00000000000000001);
 
     }
+
+
 }
