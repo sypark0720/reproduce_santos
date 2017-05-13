@@ -36,6 +36,7 @@ public class GraphGenerator {
         //Initialize
         for(int i=0; i<nNodes; i++) degree[i] = m0;
 
+        //todo m0 이용해서 바꾸기
         for(int i=0; i<nNodes; i++){
             adjacencyList = insertEdge(i, (i+nNodes-2)%nNodes, adjacencyList);
             adjacencyList = insertEdge(i, (i+nNodes-1)%nNodes, adjacencyList);

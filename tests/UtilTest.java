@@ -8,11 +8,23 @@ import static org.junit.Assert.*;
 
 public class UtilTest {
 
+
     public static GraphGenerator gg;
 
     @BeforeClass
     public static void makeInstance()throws Exception {
         gg = new GraphGenerator();
+    }
+
+    @Test
+    public void sumArray() throws Exception {
+        double[] expected = {3,3,3,3,3};
+
+        double[] test1 = {1,1,1,1,1};
+        double[] test2 = {2,2,2,2,2};
+        double[] actual = Util.sumArray(test1,test2);
+
+        assertArrayEquals(expected, actual, 0.00000001);
     }
 
     @Test

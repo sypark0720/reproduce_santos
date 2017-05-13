@@ -3,11 +3,18 @@ import java.util.List;
 
 public class Util {
 
+    public static double[] sumArray (double[] accmulatedArray, double[] targetArray){
+        for(int i=0; i<accmulatedArray.length; i++)
+            accmulatedArray[i] += targetArray[i];
+        return accmulatedArray;
+    }
+
     public static double[] averageArray(double[] array, int num){
+        double[] newArray = new double[array.length];
         for(int i=0; i<array.length; i++){
-            array[i] = array[i]/num;
+            newArray[i] = array[i]/num;
         }
-        return array;
+        return newArray;
     }
 
 
@@ -58,7 +65,7 @@ public class Util {
     public static String arrayToString(double[] array){
         String text= "";
         for(int i=0; i<array.length; i++){
-            text += array[i]+" | ";
+            text += array[i]+" ";
         }
         return text;
     }

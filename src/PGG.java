@@ -65,7 +65,6 @@ public class PGG {
         //x 포함
         xneighbors.add(x);
 
-
         int[] strategy = graph.getStrategy();
         int nc = 0;
 
