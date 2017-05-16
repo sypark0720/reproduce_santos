@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GraphGenerator {
 
@@ -56,7 +55,7 @@ public class GraphGenerator {
 
         for(int i=m0; i<nNodes; i++) degree[i] = m0/2; //degree를 [1,1,1,1,m0,m0,...]로 초기화 (하나의 노드를 붙일 때마다 m0/2개의 edge가 추가되므로)
 
-        Random rd = new Random();
+        MersenneTwisterFast rd = new MersenneTwisterFast();
 
         //Add nodes
         for (int i=1;i<nNodes-m0;i++)

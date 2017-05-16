@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class Graph implements Cloneable {
 
@@ -34,7 +33,7 @@ public class Graph implements Cloneable {
     public int initializeStrategy(double rc){
         int[] newStrategy = new int[this.getnNode()];
 
-        Random rand = new Random();
+        MersenneTwisterFast rand = new MersenneTwisterFast();
         int numOfC = (int) (rc*this.getnNode());
         ArrayList<Integer> selected = new ArrayList<>();
         int counter = 0;

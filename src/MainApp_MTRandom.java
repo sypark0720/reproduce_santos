@@ -2,10 +2,9 @@ public class MainApp_MTRandom {
 
     public static void main(String args[]){
 
-        MTRandom rd = new MTRandom();
-
-        int n = rd.next(32);
-        System.out.println(n);
+        MersenneTwisterFast rand = new MersenneTwisterFast();
+        System.out.println(rand.nextInt());
+        System.out.println(rand.nextFloat());
 
     }
 }

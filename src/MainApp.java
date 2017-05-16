@@ -44,9 +44,6 @@ public class MainApp {
                 e.printStackTrace();
             }
 
-
-
-
             //HETEROGENEOUS GRAPH
             Graph originHeteroGraph = gg.generateHeteroGraph(Param.m0, Param.nNodes);
 

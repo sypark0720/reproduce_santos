@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Random;
 
 public class Evolution {
 
@@ -8,7 +7,7 @@ public class Evolution {
 //        System.out.println("---------- EVOLUTION GRAPH--------------- ");
 //        System.out.println(graph.toString());
 
-        Random rand = new Random();
+        MersenneTwisterFast rand = new MersenneTwisterFast();
         double[] payoff = graph.getPayoff();
         int[] strategy = graph.getStrategy();
 //        System.out.println("ORG STRATEGY: "+Util.arrayToString(strategy));
