@@ -54,7 +54,7 @@ public class GraphGenerator {
         List<List<Integer>> adjacencyList = graph.getAdjacencyList();
         int[] degree = graph.getDegree();
 
-        for(int i=m0; i<nNodes; i++) degree[i] = m0; //degree를 [1,1,1,1,m0,m0,...]로 초기화 (하나의 노드를 붙일 때마다 m0개의 edge가 추가되므로)
+        for(int i=m0; i<nNodes; i++) degree[i] = m0/2; //degree를 [1,1,1,1,m0,m0,...]로 초기화 (하나의 노드를 붙일 때마다 m0/2개의 edge가 추가되므로)
 
         Random rd = new Random();
 

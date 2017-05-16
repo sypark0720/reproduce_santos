@@ -20,9 +20,10 @@ public class MainApp_allOnce
 
         for (int i = 0; i < Param.nSample; i++) {
 
-            //homo
+
             double r = Param.rStart + Param.rInterval * i;
 
+            //homo
             Graph homoGraph = null;
             try {
                 homoGraph = originHomoGraph.clone();
@@ -34,44 +35,54 @@ public class MainApp_allOnce
                 homoGraph = PGG.round(homoGraph, r);
                 homoGraph = Evolution.evolve(homoGraph, r);
                 homoGraph.initializePayoff();
+//                if(j % 100 ==0) System.out.println("homograph,_period: "+j+" result: "+Util.getFracOfCoop(homoGraph));
             }
 
             rArray[i] = r;
             homoResult[i] = Util.getFracOfCoop(homoGraph);
 
 
-//            //hetero
-//            Graph heteroGraph = null;
-//            try {
-//                heteroGraph = originHeteroGraph.clone();
-//            } catch (CloneNotSupportedException e) {
-//                e.printStackTrace();
-//            }
-//
-//
-//            for (int j = 0; j < Param.periods; j++) {
-//                //1. HeteroGraph
-//                heteroGraph = PGG.round(heteroGraph, r);
-//                heteroGraph = Evolution.evolve(heteroGraph, r);
-//                heteroGraph.initializePayoff();
-//            }
-//
-//            heteroResult[i] = Util.getFracOfCoop(heteroGraph);
-//
-//            for (int j = 0; j < Param.periods; j++) {
-//                //1. HeteroGraph
-//                heteroGraph = PGG.roundLimited(heteroGraph, r);
-//                heteroGraph = Evolution.evolve(heteroGraph, r);
-//                heteroGraph.initializePayoff();
-//            }
-//
-//            heteroLimitedResult[i] = Util.getFracOfCoop(heteroGraph);
+            //hetero1
+            Graph heteroGraph = null;
+            try {
+                heteroGraph = originHeteroGraph.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+
+
+            for (int j = 0; j < Param.periods; j++) {
+                heteroGraph = PGG.round(heteroGraph, r);
+                heteroGraph = Evolution.evolve(heteroGraph, r);
+                heteroGraph.initializePayoff();
+//                if(j % 100 ==0) System.out.println("heterograph1,_period: "+j+" result: "+Util.getFracOfCoop(heteroGraph));
+            }
+
+            heteroResult[i] = Util.getFracOfCoop(heteroGraph);
+
+
+            //hetero2: limited
+            Graph heteroGraph2 = null;
+            try {
+                heteroGraph2 = originHeteroGraph.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+
+            for (int j = 0; j < Param.periods; j++) {
+                heteroGraph2 = PGG.roundLimited(heteroGraph2, r);
+                heteroGraph2 = Evolution.evolve(heteroGraph2, r);
+                heteroGraph2.initializePayoff();
+//                if(j % 100 ==0) System.out.println("heterograph2,_period: "+j+" result: "+Util.getFracOfCoop(heteroGraph2));
+            }
+
+            heteroLimitedResult[i] = Util.getFracOfCoop(heteroGraph2);
         }
 
         System.out.println("r_val__: "+Util.arrayToString(rArray));
         System.out.println("homo___: "+Util.arrayToString(homoResult));
-//        System.out.println("hetero1: "+Util.arrayToString(heteroResult));
-//        System.out.println("hetero2: "+Util.arrayToString(heteroLimitedResult));
+        System.out.println("hetero1: "+Util.arrayToString(heteroResult));
+        System.out.println("hetero2: "+Util.arrayToString(heteroLimitedResult));
 
     }
 }

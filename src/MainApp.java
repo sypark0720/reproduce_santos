@@ -23,22 +23,49 @@ public class MainApp {
         for (int num=0; num < Param.realization; num++){
 
             //HOMOGENEOUS GRAPH
-            Graph homoGraph = gg.generateHomoGraph(Param.m0, Param.nNodes);
+            Graph originHomoGraph = gg.generateHomoGraph(Param.m0, Param.nNodes);
 
-            graphAvgRate = executor.execute(homoGraph);
-            homoWholeAccRate = Util.sumArray(homoWholeAccRate, graphAvgRate);
+            Graph homoGraph = null;
+            try {
+                homoGraph = originHomoGraph.clone();
+                graphAvgRate = executor.execute(homoGraph);
+                homoWholeAccRate = Util.sumArray(homoWholeAccRate, graphAvgRate);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
 
-            graphAvgRate = executor.executeLimited(homoGraph);
-            homoLimitedWholeAccRate = Util.sumArray(homoLimitedWholeAccRate, graphAvgRate);
+
+            try {
+                Graph homoGraph2 = originHomoGraph.clone();
+                graphAvgRate = executor.executeLimited(homoGraph2);
+                homoLimitedWholeAccRate = Util.sumArray(homoLimitedWholeAccRate, graphAvgRate);
+
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+
+
+
 
             //HETEROGENEOUS GRAPH
-            Graph heteroGraph = gg.generateHeteroGraph(Param.m0, Param.nNodes);
+            Graph originHeteroGraph = gg.generateHeteroGraph(Param.m0, Param.nNodes);
 
-            graphAvgRate = executor.execute(heteroGraph);
-            heteroWholeAccRate = Util.sumArray(heteroWholeAccRate, graphAvgRate);
+            Graph heteroGraph = null;
+            try {
+                heteroGraph = originHeteroGraph.clone();
+                graphAvgRate = executor.execute(heteroGraph);
+                heteroWholeAccRate = Util.sumArray(heteroWholeAccRate, graphAvgRate);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
 
-            graphAvgRate = executor.executeLimited(heteroGraph);
-            heteroLimitedWholeAccRate = Util.sumArray(heteroLimitedWholeAccRate, graphAvgRate);
+            try {
+                Graph heteroGraph2 = originHeteroGraph.clone();
+                graphAvgRate = executor.executeLimited(heteroGraph2);
+                heteroLimitedWholeAccRate = Util.sumArray(heteroLimitedWholeAccRate, graphAvgRate);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
         }
 
         System.out.println("r_val___: "+Util.arrayToString(rArray));
