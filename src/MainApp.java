@@ -34,7 +34,7 @@ public class MainApp {
 //                e.printStackTrace();
 //            }
 //
-//
+//            //여긴 주석처리할 것
 //            try {
 //                Graph homoGraph2 = originHomoGraph.clone();
 //                graphAvgRate = executor.executeLimited(homoGraph2);
@@ -68,7 +68,6 @@ public class MainApp {
         System.out.println("r_val___: "+Util.arrayToString(rArray));
         System.out.println("homo____: "+Util.arrayToString(Util.averageArray(homoWholeAccRate, Param.realization)));
         System.out.println("homo_lim: "+Util.arrayToString(Util.averageArray(homoLimitedWholeAccRate, Param.realization)));
-        System.out.println("hete____: "+Util.arrayToString(Util.averageArray(heteroWholeAccRate, Param.realization)));
         System.out.println("hete_lim: "+Util.arrayToString(Util.averageArray(heteroLimitedWholeAccRate, Param.realization)));
     }
 }

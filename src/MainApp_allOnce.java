@@ -71,7 +71,7 @@ public class MainApp_allOnce
 
             for (int j = 0; j < Param.periods; j++) {
                 heteroGraph2 = PGG.roundLimited(heteroGraph2, r);
-                heteroGraph2 = Evolution.evolve(heteroGraph2, r);
+                heteroGraph2 = Evolution.evolveLimited(heteroGraph2, r);
                 heteroGraph2.initializePayoff();
 //                if(j % 100 ==0) System.out.println("heterograph2,_period: "+j+" result: "+Util.getFracOfCoop(heteroGraph2));
             }

@@ -67,7 +67,6 @@ public class Executor {
 
                 double r = Param.rStart + Param.rInterval * rOrder;
 
-                System.out.println("r:" + r);
                 //IN ONE r VALUE
                 Graph graph = null;
                 try {
@@ -79,14 +78,14 @@ public class Executor {
                 //periods만큼 진행
                 for (int period = 0; period < Param.periods; period++) {
                     graph = PGG.roundLimited(graph, r);
-                    graph = Evolution.evolve(graph, r);
+                    graph = Evolution.evolveLimited(graph, r);
                     graph.initializePayoff();
                 }
 
                 //그 후 n번의 periods를 평균
                 for (int period = 0; period < Param.periodsAvged; period++){
                     graph = PGG.roundLimited(graph, r);
-                    graph = Evolution.evolve(graph, r);
+                    graph = Evolution.evolveLimited(graph, r);
                     graph.initializePayoff();
                     roundAccRate[rOrder] += Util.getFracOfCoop(graph);
                 }
