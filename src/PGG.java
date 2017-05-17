@@ -84,6 +84,9 @@ public class PGG {
     //중심이 x인 PGG에 y가 참여
     public static double participatePGGLimited(int y, int x, Graph graph, double r){
 
+//        System.out.println("------------------");
+//        System.out.println("x: "+x+", y: "+y);
+
         //x 미포함.
         List<Integer> xneighbors = Util.getNeighbors(x, graph);
         //x 포함
@@ -96,12 +99,18 @@ public class PGG {
         //get incomes
         for (int i=0; i<xneighbors.size(); i++){
             int j = xneighbors.get(i);
+//            System.out.println("i: "+j);
             incomes += Param.c*strategy[j]/(degree[j]+1);
+//            System.out.println("incomes: "+incomes);
         }
 
         //y가 cooperator, defector일 때 구분
         double cost = 0;
         if(strategy[y]==Param.COOPERATOR) cost = Param.c;
+
+//        System.out.println("(r)*incomes/(degree[x]+1): "+(r)*incomes/(degree[x]+1));
+//        System.out.println("cost/(degree[y]+1): "+cost/(degree[y]+1));
+//        System.out.println("return: "+((r)*incomes/(degree[x]+1) - cost/(degree[y]+1)));
 
         return (r)*incomes/(degree[x]+1) - cost/(degree[y]+1);
     }

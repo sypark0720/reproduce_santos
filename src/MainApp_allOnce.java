@@ -69,10 +69,26 @@ public class MainApp_allOnce
                 e.printStackTrace();
             }
 
+            System.out.println("origins: "+heteroGraph2.toString());
+
+
             for (int j = 0; j < Param.periods; j++) {
+                System.out.println("--------PERIOD: "+j+"----------------------");
+                System.out.println("--------Before Rounded-------");
+                System.out.println("STRATEGY: "+Util.arrayToString(heteroGraph2.getStrategy()));
+                System.out.println("PAYOFF__: "+Util.arrayToString(heteroGraph2.getPayoff()));
                 heteroGraph2 = PGG.roundLimited(heteroGraph2, r);
+                System.out.println("--------After  Rounded-------");
+                System.out.println("STRATEGY: "+Util.arrayToString(heteroGraph2.getStrategy()));
+                System.out.println("PAYOFF__: "+Util.arrayToString(heteroGraph2.getPayoff()));
                 heteroGraph2 = Evolution.evolve(heteroGraph2, r);
+                System.out.println("--------After evolution-------");
+                System.out.println("STRATEGY: "+Util.arrayToString(heteroGraph2.getStrategy()));
+                System.out.println("PAYOFF__: "+Util.arrayToString(heteroGraph2.getPayoff()));
                 heteroGraph2.initializePayoff();
+                System.out.println("--------After initialized-------");
+                System.out.println("STRATEGY: "+Util.arrayToString(heteroGraph2.getStrategy()));
+                System.out.println("PAYOFF__: "+Util.arrayToString(heteroGraph2.getPayoff()));
 //                if(j % 100 ==0) System.out.println("heterograph2,_period: "+j+" result: "+Util.getFracOfCoop(heteroGraph2));
             }
 

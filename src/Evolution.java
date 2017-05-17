@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Random;
 
+
 public class Evolution {
 
     public static Graph evolve(Graph graph, double r){
@@ -30,6 +31,7 @@ public class Evolution {
 
             if(payoff[index] >= payoff[selected]) {
 //                System.out.println("payoff of index is bigger. no change");
+//                System.out.println("STRATEGY: "+Util.arrayToString(newStrategy));
                 continue;}
             else{
                 float probe = rand.nextFloat();
@@ -42,7 +44,7 @@ public class Evolution {
                 if( (payoff[selected] - payoff[index])/M >= probe){
                     newStrategy[index] = strategy[selected];
 //                    System.out.println("changed");
-//                    System.out.println("NEW STRATEGY: "+newStrategy);
+//                    System.out.println("NEW STRATEGY: "+Util.arrayToString(newStrategy));
                 }else {
 //                    System.out.println("probe is bigger. no change");
                 }
