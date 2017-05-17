@@ -2,13 +2,13 @@ public class Param {
 
     //Parameters
     //r 관련
-    public static final int nSample = 8; //paper: 19 - the number of measured r
+    public static final int nSample = 1; //paper: 19 - the number of measured r
     public static final double rInterval = 0.5; //paper: 0.25 -interval of r //r started from 1
     public static final double rStart = 1; //paper: 1 (1~5, 0.25 intervals)
 
     //in one graph, one round
-    public static final int periods = 20000; //paper: 100000 -generations to be in equalibrium //3000정도면 0.01 이하됨
-    public static final int periodsAvged = 10; //paper: 2000 -위의 periods가 지난 다음 얼마만큼의 generation을 평균낼 것인지
+    public static final int periods = 5; //paper: 100000 -generations to be in equalibrium //20000정도면 0.01 이하됨
+    public static final int periodsAvged = 1; //paper: 2000 -위의 periods가 지난 다음 얼마만큼의 generation을 평균낼 것인지
 
 
     //in one graph, total rounds

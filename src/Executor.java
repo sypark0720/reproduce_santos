@@ -67,6 +67,7 @@ public class Executor {
 
                 double r = Param.rStart + Param.rInterval * rOrder;
 
+                System.out.println("r:" + r);
                 //IN ONE r VALUE
                 Graph graph = null;
                 try {
