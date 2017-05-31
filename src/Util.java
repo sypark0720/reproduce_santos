@@ -38,6 +38,25 @@ public class Util {
         return newList;
     }
 
+
+    public static List<Integer> getNeighbors(int index, List<List<Integer>> adjacencyList){
+        List<Integer> neighbors = adjacencyList.get(index);
+
+        List<Integer> newList = new ArrayList<>();
+        for(int i=0; i<neighbors.size(); i++){
+            newList.add(neighbors.get(i));
+        }
+
+        return newList;
+    }
+
+    public static boolean isAdjacent(int index1, int index2, List<List<Integer>> adjacencyList){
+        List<Integer> neighborOfIndex1 = adjacencyList.get(index1);
+        if(neighborOfIndex1.contains(index2)) return true;
+        return false;
+    }
+
+
     public static double getFracOfCoop(Graph graph){
         int[] strategy = graph.getStrategy();
         double sum=0;
