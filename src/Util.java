@@ -53,7 +53,7 @@ public class Util {
     public static boolean isAdjacent(int index1, int index2, List<List<Integer>> adjacencyList){
         List<Integer> neighborOfIndex1 = adjacencyList.get(index1);
         if(neighborOfIndex1.contains(index2)) return true;
-        return false;
+        else return false;
     }
 
 
@@ -95,5 +95,36 @@ public class Util {
             text += array[i]+" ";
         }
         return text;
+    }
+
+    //get clustering coefficient
+    public static double calculateCC(Graph graph){
+
+        List<List<Integer>> adjacentList = graph.getAdjacencyList();
+        int nNodes = graph.getnNode();
+
+        double clusterCoef = 0;
+        List<Integer> neighbors;
+
+        for (int index=0; index<nNodes; index++)
+        {
+            neighbors = Util.getNeighbors(index, adjacentList);
+            int degree = neighbors.size();
+            int sum = 0;
+
+//            System.out.println("degree: " + degree);
+            if(degree > 1){
+
+                for (int i=0; i<degree; i++)
+                    for (int j=i; j<degree; j++)
+                    {
+                        if(Util.isAdjacent(neighbors.get(i), neighbors.get(j), adjacentList)) sum++;
+                    }
+//                System.out.println("120: "+ sum);
+                clusterCoef += sum / ( 0.5*(degree*(degree-1)) );
+//                System.out.println("121: "+ clusterCoef);
+            }
+        }
+        return clusterCoef/nNodes;
     }
 }
